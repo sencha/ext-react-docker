@@ -1,0 +1,69 @@
+{
+  "name": "ext-react-docker",
+  "version": "1.1.0",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && cross-env NODE_ENV=production webpack --env.prod=true --progress --colors",
+    "clean": "rimraf build",
+    "pretest": "webpack --progress",
+    "preupdate-snapshots": "webpack --progress",
+    "prod": "cd build && static-server --port 8080",
+    "start": "webpack-dev-server --progress --colors",
+    "test": "jest",
+    "update-snapshots": "jest -u",
+    "docker:build": "cp ~/.npmrc . && docker build -t sencha/ext-react-boilerplate .",
+    "docker:run": "docker run -p 49160:8080 sencha/ext-react-boilerplate",
+    "docker:bash": "docker run -it sencha/ext-react-boilerplate /bin/bash"
+  },
+  "dependencies": {
+    "@extjs/ext-react": "^6.5.1",
+    "@extjs/reactor": "^1.1.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-runtime": "^6.23.0",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router-dom": "^4.1.1"
+  },
+  "devDependencies": {
+    "@extjs/reactor-babel-plugin": "^1.1.0",
+    "@extjs/reactor-webpack-plugin": "^1.1.0",
+    "babel-core": "^6.17.0",
+    "babel-jest": "^20.0.3",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-2": "^6.13.0",
+    "cross-env": "^5.0.0",
+    "html-webpack-plugin": "^2.24.1",
+    "jest": "^20.0.4",
+    "open-browser-webpack-plugin": "0.0.5",
+    "portfinder": "^1.0.13",
+    "react-hot-loader": "^3.0.0-beta.7",
+    "react-test-renderer": "^15.5.4",
+    "rimraf": "^2.6.1",
+    "static-server": "^2.0.5",
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "setupFiles": [
+      "./node_modules/@extjs/reactor/jest/setup.js",
+      "./build/ext-react/ext.js"
+    ],
+    "unmockedModulePathPatterns": [
+      "react",
+      "react-dom",
+      "react-addons-test-utils",
+      "enzyme"
+    ]
+  }
+}
