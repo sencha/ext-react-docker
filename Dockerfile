@@ -37,7 +37,7 @@ RUN export JAVA_HOME
 
 # Install app dependencies
 COPY package.json .
-COPY .npmrc /root
+COPY docker/.npmrc /root
 
 RUN npm cache clear -f
 RUN npm install

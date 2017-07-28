@@ -12,8 +12,8 @@
     "start": "webpack-dev-server --progress --colors",
     "test": "jest",
     "update-snapshots": "jest -u",
-    "docker:build": "cp ~/.npmrc . && docker build -t sencha/ext-react-boilerplate .",
-    "docker:run": "docker run -p 49160:8080 sencha/ext-react-boilerplate",
+    "docker:build": "cp ~/.npmrc docker && docker build -t sencha/ext-react-boilerplate .",
+    "docker:start": "opn http://localhost:8080 && docker run -p 8080:8080 sencha/ext-react-boilerplate",
     "docker:bash": "docker run -it sencha/ext-react-boilerplate /bin/bash"
   },
   "dependencies": {
@@ -39,7 +39,7 @@
     "cross-env": "^5.0.0",
     "html-webpack-plugin": "^2.24.1",
     "jest": "^20.0.4",
-    "open-browser-webpack-plugin": "0.0.5",
+    "opn-cli": "^3.1.0",
     "portfinder": "^1.0.13",
     "react-hot-loader": "^3.0.0-beta.7",
     "react-test-renderer": "^15.5.4",
